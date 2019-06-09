@@ -85,16 +85,16 @@ include("HF/header.php");
 			$.ajax({
 				url : 'controller/ContactController.php',
 				type : 'POST' ,
-				contentType: "application/json",
+				dataType: "json",
 				data : {
 					name: data[0],
 					email: data[1],
-					suject: data[2],
+					subject: data[2],
 					opinion: data[3]
 				},
 
 			}).done(function(ketqua){
-				console.log(ketqua);
+				console.log(typeof ketqua['status']);
 				
 				if(ketqua.hasOwnProperty('status') && ketqua['status'] == 'success'){
 					Swal.fire(
@@ -110,6 +110,7 @@ include("HF/header.php");
 						text: 'Something went wrong!',
 						footer: '<a href>Why do I have this issue?</a>'
 					})
+					// alert("hello");
 				}
 
 			}).fail(function(jqXHR, textStatus, errorThrown){
